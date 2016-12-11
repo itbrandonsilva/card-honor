@@ -8,12 +8,14 @@ const reducer = require('../src/reducer');
 
 
 describe('reducer', () => {
+    let store;
+    let state;
+    beforeEach(() => {
+        store = redux.createStore(reducer);
+        state = store.getState();
+    });
+
     describe('should define a default a state', () => {
-        let state;
-        beforeEach(() => {
-            store = redux.createStore(reducer);
-            state = store.getState();
-        });
 
         it('that is an Immutable.Map', () => {
             expect(state).to.be.an.instanceof(Immutable.Map);
@@ -35,6 +37,15 @@ describe('reducer', () => {
             let map = state.get('world').get('map');
             expect(map).to.be.an.instanceof(Immutable.List);
             map.size.should.equal(6 * 6);
+        });
+    });
+
+    describe('can handle actions that can', () => {
+        it('add a player to the game', () => {
+            store.dispatch({type: 'PLAYER_JOIN', name: 'Shajee'});
+            state = store.getState();
+            let players = state.get('players');
+            players.get('Shajee').should.be.an.instanceof(Immutable.Map);
         });
     });
 });
