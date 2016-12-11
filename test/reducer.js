@@ -16,7 +16,6 @@ describe('reducer', () => {
     });
 
     describe('should define a default a state', () => {
-
         it('that is an Immutable.Map', () => {
             expect(state).to.be.an.instanceof(Immutable.Map);
         });
