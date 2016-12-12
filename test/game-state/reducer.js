@@ -4,7 +4,7 @@ const chai = require('chai');
 const expect = chai.expect;
 chai.should();
 
-const reducer = require('../src/reducer');
+const reducer = require('../../src/game-state/reducer');
 
 
 describe('reducer', () => {
